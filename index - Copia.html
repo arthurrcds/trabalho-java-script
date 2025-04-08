@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Métodos de Array: at, join, pop, push</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #fceabb, #f8b500);
+      padding: 30px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #b76e79;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 30px;
+    }
+
+    input, button {
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e68900;
+    }
+
+    .output {
+      background-color: #f9f9f9;
+      border-left: 4px solid #ff9800;
+      padding: 10px;
+      margin-top: 5px;
+      font-weight: bold;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1> Métodos de Array</h1>
+
+    <!-- at() -->
+    <div>
+      <h2>Array.at()</h2>
+      <p>Digite um índice (ex: 0, -1):</p>
+      <input id="inputAt" placeholder="Índice ex: -1 ou 2">
+      <button onclick="usarAt()">Buscar</button>
+      <div id="outputAt" class="output"></div>
+    </div>
+
+    <!-- join() -->
+    <div>
+      <h2>Array.join()</h2>
+      <p>Digite um separador (ex: espaço, vírgula, traço):</p>
+      <input id="inputJoin" placeholder="Separador ex: -, /, espaço">
+      <button onclick="usarJoin()">Unir</button>
+      <div id="outputJoin" class="output"></div>
+    </div>
+
+    <!-- pop() -->
+    <div>
+      <h2>Array.pop()</h2>
+      <p>Remove o último item do array:</p>
+      <button onclick="usarPop()">Remover Último</button>
+      <div id="outputPop" class="output"></div>
+    </div>
+
+    <!-- push() -->
+    <div>
+      <h2>Array.push()</h2>
+      <p>Digite um novo item para adicionar ao array:</p>
+      <input id="inputPush" placeholder="Item a adicionar">
+      <button onclick="usarPush()">Adicionar</button>
+      <div id="outputPush" class="output"></div>
+    </div>
+  </div>
+
+  <!-- ✅ JavaScript agora no final do body -->
+  <script>
+    let exemploArray = ['maçã', 'banana', 'laranja'];
+
+    function usarAt() {
+      const index = parseInt(document.getElementById('inputAt').value);
+      const item = exemploArray.at(index);
+      document.getElementById('outputAt').innerText = item !== undefined
+        ? `🍎 Item na posição ${index}: ${item}`
+        : `⚠️ Índice inválido.`;
+    }
+
+    function usarJoin() {
+      const separador = document.getElementById('inputJoin').value || ', ';
+      const resultado = exemploArray.join(separador);
+      document.getElementById('outputJoin').innerText = `🔗 Resultado: ${resultado}`;
+    }
+
+    function usarPop() {
+      if (exemploArray.length === 0) {
+        document.getElementById('outputPop').innerText = '⚠️ O array está vazio.';
+        return;
+      }
+      const removido = exemploArray.pop();
+      document.getElementById('outputPop').innerText = `❌ Removido: ${removido}\n📦 Atual: [${exemploArray.join(', ')}]`;
+    }
+
+    function usarPush() {
+      const item = document.getElementById('inputPush').value.trim();
+      if (item === "") {
+        document.getElementById('outputPush').innerText = '⚠️ Insira um valor.';
+        return;
+      }
+      exemploArray.push(item);
+      document.getElementById('outputPush').innerText = `✅ Adicionado: ${item}\n📦 Atual: [${exemploArray.join(', ')}]`;
+      document.getElementById('inputPush').value = "";
+    }
+  </script>
+
+</body>
+</html>
